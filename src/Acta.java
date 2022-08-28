@@ -81,6 +81,25 @@ public class Acta {
         this.costo = costo;
     }
 
+    public boolean equalsForRemove(Acta otherActa) {
+        
+        if (departamento != otherActa.departamento) {
+            return false;
+        }
+       
+        if (nroActa != otherActa.nroActa) {
+            return false;
+        }
+        if (nroFolio != otherActa.nroFolio) {
+            return false;
+        }
+        if (nroTomo != otherActa.nroTomo) {
+            return false;
+        }
+        
+        return true;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

@@ -73,33 +73,32 @@ public class OperacionesActas {
             System.out.println("Ingrese nombre Completo:");
             acta.setNombrePersona(entrada.readLine());
 
-            System.out.println("Ingrese el sexo:");
             while (!sexo.equalsIgnoreCase("M") && !sexo.equalsIgnoreCase("F")) {
+                System.out.println("Ingrese el sexo:");
                 sexo = entrada.readLine();
             }
             acta.setSexoPersona(sexo);
 
-            System.out.println("Ingrese el nro del dpto.:");
 
             while (nroDpto < 1 || nroDpto > 17) {
+                System.out.println("Ingrese el nro del dpto. (1-17):");
                 nroDpto = Integer.parseInt(entrada.readLine());
 
             }
             acta.setDepartamento(nroDpto);
 
-
-            System.out.println("Ingrese el costo del documento (mayor o igual a 0):");
+            
             while (nroCosto < 1) {
+                System.out.println("Ingrese el costo del documento (mayor o igual a 0):");
                 nroCosto = Integer.parseInt(entrada.readLine());
-
             }
             acta.setCosto(nroCosto);
 
             if (listaActas.add(acta)) {
-                System.out.println("Cliente agregado");
+                System.out.println("Acta agregada");
                 return;
             } else {
-                System.err.println("Cliente ya existe");
+                System.err.println("Acta ya existe");
             }
 
         } catch (Exception e) {
@@ -109,7 +108,38 @@ public class OperacionesActas {
     }
 
     private void eliminarActa() {
-        // TODO Auto-generated method stub
+        Acta actaELiminar = new Acta();
+
+        try {
+            int nroDpto = 0;
+            System.out.println("Ingrese numero de acta:");
+            actaELiminar.setNroActa(Integer.parseInt(entrada.readLine()));
+
+            System.out.println("Ingrese numero de tomo:");
+            actaELiminar.setNroTomo(Integer.parseInt(entrada.readLine()));
+
+            System.out.println("Ingrese el nro de folio:");
+            actaELiminar.setNroFolio(Integer.parseInt(entrada.readLine()));
+
+            while (nroDpto < 1 || nroDpto > 17) {
+                System.out.println("Ingrese el nro del dpto. (1-17):");
+                nroDpto = Integer.parseInt(entrada.readLine());
+
+            }
+            actaELiminar.setDepartamento(nroDpto);
+
+            
+            boolean actaELiminada = listaActas.removeIf(ac -> ac.equalsForRemove(actaELiminar));
+            if (actaELiminada) {
+                System.out.println("Acta Eliminada");
+                return;
+            } else {
+                System.err.println("No se pudo eliminar el Acta");
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error inesperado : " + e.getMessage());
+        }
 
     }
 
