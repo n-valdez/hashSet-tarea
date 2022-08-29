@@ -144,7 +144,48 @@ public class OperacionesActas {
     }
 
     private void modificarActa() {
-        // TODO Auto-generated method stub
+        try {
+
+			System.out.println("Ingrese nro de Acta a Modificar:");
+			int nroActa = Integer.parseInt(entrada.readLine());
+
+			System.out.println("Ingrese nro de Tomo a Modificar:");
+			int nroTomo = Integer.parseInt(entrada.readLine());
+
+			System.out.println("Ingrese nro de Folio a Modificar:");
+			int nroFolio = Integer.parseInt(entrada.readLine());
+
+			Iterator<Acta> itActa = listaActas.iterator();
+			while (itActa.hasNext()) {
+				Acta acta = itActa.next();
+				if (acta.getNroActa() == nroActa || acta.getNroTomo() == nroTomo || acta.getNroActa() == nroFolio) {
+
+					System.out.println("Ingrese nombre:");
+					String nom = entrada.readLine();
+					acta.setNombrePersona(nom);
+
+					System.out.println("Ingrese el sexo:");
+					String sexo = "";
+					while (!sexo.equalsIgnoreCase("M") && !sexo.equalsIgnoreCase("F")) {
+						sexo = entrada.readLine();
+					}
+					acta.setSexoPersona(sexo);
+
+					System.out.println("Ingrese el nro del dpto.:");
+					int nroDpto = 0;
+					while (nroDpto < 1 || nroDpto > 17) {
+						nroDpto = Integer.parseInt(entrada.readLine());
+
+					}
+					acta.setDepartamento(nroDpto);
+
+					return;
+				}
+
+			}
+		} catch (Exception e) {
+			System.err.println("Error inesperado : " + e.getMessage());
+		}
 
     }
 
